@@ -19,7 +19,10 @@ function passwordValidation2(password){
 //  ----------&&
 
 function passwordValidation3(password){
-    let res = password.length>7&&'strong';
+    let res = password.length>=7&&'strong';
+    if (res == false){
+        res= 'weak';
+    } 
     return res
 }
 
@@ -32,6 +35,6 @@ function advanced(password){
 }
 
 
-// console.log(advanced('AIUbbbbbbb'));
+console.log(passwordValidation3('8888'));
 
 
