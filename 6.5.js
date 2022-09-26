@@ -6,15 +6,11 @@ let filledArr = Array(100).fill(100, 0);
 // 2. Create an array with numbers ranging from 1-100 using
 // the Array.from method.
 
-let mapedArray = range(1, 100, 1);
-console.log(mapedArray);
-
-// let newArray = Array.from(filledArr, num => num);
-// console.log(newArray);
-// console.log(Array.from([1, 2, 3], x => x + x));
+let ranged = Array.from(Array(101).keys());
+console.log(ranged);
 
 // 3. Convert only values of an object into one array.
-let arrayFromValues = Object.values(obj);
+let arrayFromValues = Object.values(ranged);
 
 // 4. Convert an array into one object.
 
