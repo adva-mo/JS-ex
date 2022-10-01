@@ -71,15 +71,27 @@ function getDates(arr) {
 
 function getFood(arr) {
   let res = {};
-  arr.forEach(function (p) {
-    p.favoriteFoods.meats.forEach(function (i) {
-      if (!res.hasOwnProperty(i)) {
-        res.i = 1;
+  arr.forEach((p) => {
+    p.favoriteFoods.meats.forEach((food) => {
+      if (res[food]) {
+        res[food] = res[food] + 1;
+      } else {
+        res[food] = 1;
+      }
+    });
+    p.favoriteFoods.fish.forEach((food) => {
+      if (res[food]) {
+        res[food] = res[food] + 1;
+      } else {
+        res[food] = 1;
       }
     });
   });
+
   return res;
 }
+console.log(getFood(data));
+getFood;
 
 // let x = data[0];
 // x = x.favoriteFoods; //object
