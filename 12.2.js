@@ -41,5 +41,15 @@ function addCandy(candyStore, id, name, price) {
   candyStore.candies.push({ name: name, id: id, price: price, amount: 1 });
 }
 
-addCandy(candyStore, "jhg", "marsh", 5779);
-console.log(candyStore.candies[2]);
+// addCandy(candyStore, "jhg", "marsh", 5779);
+// console.log(candyStore.candies[2]);
+
+// 4.  Implement the following buy function: The function
+//  should add the candy price to the cashRegister, and decrease the
+//  amount property of the relevant candy.
+
+function buy(candyStore, id) {
+  const CANDY = candyStore.candies.find((candy) => candy.id === id);
+  CANDY.amount += 1;
+  candyStore.cashRegister += CANDY.price;
+}
