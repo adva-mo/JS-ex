@@ -55,16 +55,15 @@ function getNames(arr) {
 
 function getDates(arr) {
   let res = [];
-  arr.forEach(function (person) {
-    let year = person.birthday.split("-");
-    year = parseInt(year[2]);
+  arr.forEach((person) => {
+    let year = parseInt(person.birthday.split("-")[2]);
     if (year < 1990) {
-      res.push(person);
+      console.log(person);
     }
   });
-  return res;
 }
 
+getDates(data);
 // 3. Create a function that returns an object of all the different
 // foods from all the objects as the key and the number of
 // times that food is present in all the objects as the value.
@@ -90,8 +89,8 @@ function getFood(arr) {
 
   return res;
 }
-console.log(getFood(data));
-getFood;
+// console.log(getFood(data));
+// getFood;
 
 // let x = data[0];
 // x = x.favoriteFoods; //object
