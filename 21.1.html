@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21.1</title>
+  </head>
+  <body>
+    <form action="#">
+      <input class="input" type="text" />
+      <input class="submit" type="submit" />
+    </form>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+
+    const handleInput = function () {
+      if (inputField.value > 18) {
+        const res = document.createElement("p");
+        res.innerText = "you can drink appear";
+        form.appendChild(res);
+      } else {
+        const res = document.createElement("p");
+        res.innerText = "you are too young!";
+        form.appendChild(res);
+      }
+    };
+
+    const inputField = document.querySelector(".input");
+    const btn = document.querySelector(".submit");
+    btn.addEventListener("click", handleInput);
+  </script>
+</html>
