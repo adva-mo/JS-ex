@@ -34,7 +34,7 @@
 
     fontUp.addEventListener("click", function () {
       let curSize = Number(text.style.fontSize[0] + text.style.fontSize[1]);
-      if (curSize < 30) {
+      if (curSize < 100) {
         curSize += 1;
         text.style.fontSize = curSize + "px";
       } else {
@@ -48,7 +48,7 @@
         curSize -= 1;
         text.style.fontSize = curSize + "px";
       } else {
-        alert("minmum size!");
+        alert("minimum size!");
       }
     });
   </script>
