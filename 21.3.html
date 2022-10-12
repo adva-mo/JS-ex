@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21.3</title>
+    <style>
+      .container {
+        width: 300px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .btn {
+        width: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form action="#">
+        <label for="message">why are you interested in this position?</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        <input class="btn" type="submit" value="click here!"></input>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    const FORM = document.querySelector("form");
+    const TEXT = document.querySelector("textarea");
+    const click = document.querySelector(".btn");
+    
+    const checkLen = function (event) {
+      if (TEXT.textLength < 100){
+        event.preventDefault()
+        const warning = document.createElement('p');
+        warning.innerText = "please fill-in at least 100 words."
+        FORM.insertBefore(warning, TEXT);
+        setTimeout(function(){
+  warning.remove();
+}, 5000);
+      }
+    };
+    click.addEventListener("click", checkLen);
+  </script>
+</html>
