@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21.2</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100wh;
+      }
+      .btn {
+        width: 50px;
+        height: 50px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn font-down">-</button>
+    <p>RANDOM TEXT</p>
+    <button class="btn font-up">+</button>
+  </body>
+  <script>
+    const text = document.querySelector("p");
+    text.style.fontSize = "16px";
+
+    const fontUp = document.querySelector(".font-up");
+    const fontDown = document.querySelector(".font-down");
+
+    fontUp.addEventListener("click", function () {
+      let curSize = Number(text.style.fontSize[0] + text.style.fontSize[1]);
+      if (curSize < 30) {
+        curSize += 1;
+        text.style.fontSize = curSize + "px";
+      } else {
+        alert("maximum size!");
+      }
+    });
+
+    fontDown.addEventListener("click", function () {
+      let curSize = Number(text.style.fontSize[0] + text.style.fontSize[1]);
+      if (curSize > 6) {
+        curSize -= 1;
+        text.style.fontSize = curSize + "px";
+      } else {
+        alert("minmum size!");
+      }
+    });
+  </script>
+</html>
