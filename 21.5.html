@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21.5</title>
+  </head>
+  <body>
+    <p>how many smileys you want to see?</p>
+    <form action="#">
+      <input class="input" type="text" />
+      <input class="submit" type="submit" />
+    </form>
+    <div class="smileys-container"></div>
+  </body>
+
+  <script>
+    const displaySmileys = (num) => {
+      const container = document.querySelector(".smileys-container");
+      while (num--) {
+        const smiley = document.createElement("img");
+        smiley.src = "/photos/smiley.png";
+        smiley.style.width = "40px";
+        smiley.style.height = "40px";
+        container.appendChild(smiley);
+      }
+    };
+
+    const handleClick = (event) => {
+      let num = Number(input.value);
+      console.log(num);
+      if (isNaN(num)) {
+        alert("please enter a number");
+        return;
+      }
+      displaySmileys(num);
+    };
+    const input = document.querySelector(".input");
+    const submit = document.querySelector(".submit");
+    submit.addEventListener("click", handleClick);
+  </script>
+</html>
