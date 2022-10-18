@@ -1,0 +1,59 @@
+<!-- Create a webpage that has a form (asks the user for its name,
+age, and email address) and when the user clicks submit, open
+a text window that writes all the information and asks for his
+confirmation. If he clicks on the confirm button, tell him
+“congratulations you successfully sent this form” if he clicks on
+change information, give him the possibility to change the
+information, and ask again for his confirmation. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22.1</title>
+  </head>
+  <body>
+    <form>
+      <input name="name" type="text" placeholder="enter your name: " />
+      <input name="age" type="text" placeholder="enter your age: " />
+      <input name="email" type="text" placeholder="enter your email: " />
+      <input type="submit" />
+    </form>
+  </body>
+
+  <script>
+    const form = document.querySelector("form");
+    const nameInput = document.querySelector('input[name="name"]');
+    const ageInput = document.querySelector('input[name="age"]');
+    const emailInput = document.querySelector('input[name="email"]');
+    let infoList;
+    const userInfo = {};
+
+    const alertInfo = () => {
+      infoList = document.createElement("ul");
+      for (const [key, value] of Object.entries(userInfo)) {
+        let line = `${key}: ${value} `;
+        let lineToAppend = document.createElement("li");
+        lineToAppend.innerText = line;
+        infoList.appendChild(lineToAppend);
+      }
+      window.alert(`is that info correct?
+      ${infoList}`);
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      console.log(userInfo);
+      alertInfo();
+    });
+
+    for (let input of [nameInput, ageInput, emailInput]) {
+      input.addEventListener("input", (e) => {
+        let key = e.target.name;
+        userInfo[key] = e.target.value;
+      });
+    }
+  </script>
+</html>
