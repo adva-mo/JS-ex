@@ -1,0 +1,32 @@
+<!-- Create a webpage that has a checkbox. If the checkbox is 
+    checked, make amphoto appear. If it is not, make it disappear. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22.2</title>
+  </head>
+  <body>
+    <form action="">
+      <input id="box" type="checkbox" />
+    </form>
+  </body>
+
+  <script>
+    let box = document.querySelector("#box");
+    let monkey = document.createElement("img");
+    monkey.src = "/photos/monkey.jpeg";
+    box.addEventListener("input", (e) => {
+      if (e.target.checked) {
+        console.log("show pic");
+        document.body.append(monkey);
+      } else {
+        console.log("remove!!! pic");
+        monkey.remove();
+      }
+    });
+  </script>
+</html>
