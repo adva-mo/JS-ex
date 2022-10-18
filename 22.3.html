@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22.3</title>
+    <style>
+      body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .letterBox {
+        border: 1px solid black;
+        padding: 0.5rem;
+      }
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+      form {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to guess my letter</h1>
+    <div class="letterBox">?</div>
+    <h4>Guess a key</h4>
+    <form action="">
+      would you like to play again?
+      <input type="submit" value="Yes" />
+    </form>
+    <div class="pressed">
+      <h2>key guessed</h2>
+      <p></p>
+    </div>
+  </body>
+  <script>
+    const secretLetter = "b";
+    let keyPressed = [];
+    const h4 = document.querySelector("h4");
+    const letterBox = document.querySelector(".letterBox");
+    const pressed = document.querySelector(".pressed");
+    const pressedList = document.querySelector("p");
+    const form = document.querySelector("form");
+
+    const isLetter = (str) => /^[A-Z]+$/i.test(str);
+
+    const askForReplay = (e) => {
+      form.style.display = "block";
+    };
+
+    document.body.addEventListener("keypress", (e) => {
+      let letter = e.key;
+      if (isLetter(letter)) {
+        if (!keyPressed.includes(letter)) {
+          if (letter == "b") {
+            h4.innerText = "right letter!";
+            h4.style.color = "green";
+            letterBox.textContent = secretLetter;
+            e.stopImmediatePropagation();
+            askForReplay(e);
+          } else {
+            h4.innerText = "nope, wrong letter!";
+            h4.style.color = "red";
+            keyPressed.push(letter);
+            keyPressed = keyPressed.join(", ");
+            pressedList.innerText = keyPressed;
+            keyPressed = keyPressed.split(", ");
+          }
+        } else {
+          window.alert("yov`ve selected this letter already");
+          return;
+        }
+      } else {
+        window.alert("please choose a letter!");
+        return;
+      }
+    });
+  </script>
+</html>
