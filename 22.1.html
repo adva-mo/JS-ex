@@ -19,37 +19,29 @@ information, and ask again for his confirmation. -->
       <input name="name" type="text" placeholder="enter your name: " />
       <input name="age" type="text" placeholder="enter your age: " />
       <input name="email" type="text" placeholder="enter your email: " />
-      <input type="submit" />
+      <input id="submit" type="submit" />
     </form>
   </body>
 
   <script>
     const form = document.querySelector("form");
+    const submit = document.querySelector("#submit");
     const nameInput = document.querySelector('input[name="name"]');
     const ageInput = document.querySelector('input[name="age"]');
     const emailInput = document.querySelector('input[name="email"]');
 
-    const userInfo = {};
-
-    for (let input of [nameInput, ageInput, emailInput]) {
-      input.addEventListener("input", (e) => {
-        userInfo[e.target.name] = e.target.value;
-      });
-    }
-
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      let confirmed = confirm(`
-      your name: ${userInfo.name}
-      your age: ${userInfo.age}
-      your email: ${userInfo.email},
-      confirm`);
-      this.disabled = true;
+      if (
+        confirm(`
+      your name: ${nameInput.value}
+      your age: ${ageInput.value}
+      your email: ${emailInput.value},
+      `)
+      ) {
+        alert("congratulations");
+      }
+      form.reset();
     });
-
-    if (confirmed)
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-      });
   </script>
 </html>
