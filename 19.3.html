@@ -70,8 +70,14 @@
             nextInput.focus();
           }
         }
-        if (lastInput.value.length >= 1) {
-          console.log("o");
+        // if (lastInput.value.length >= 1) {
+        //   console.log("o");
+        //   form.submit();
+        // }
+        const allValuesFull = [...inputs].every(
+          (input) => input.value && Number(input.value)
+        );
+        if (allValuesFull) {
           form.submit();
         }
       });
