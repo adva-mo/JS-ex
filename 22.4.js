@@ -5,7 +5,7 @@ let p2 = player2.firstElementChild;
 
 window.addEventListener("keyup", (e) => {
   const key = e.key;
-  if (key === "a") {
+  if (key === "l") {
     if (p1.nextElementSibling !== null) {
       p1.classList.remove("active");
       p1 = p1.nextElementSibling;
@@ -15,7 +15,7 @@ window.addEventListener("keyup", (e) => {
     }
   }
 
-  if (key === "d") {
+  if (key === "a") {
     if (p2.nextElementSibling !== null) {
       p2.classList.remove("active");
       p2 = p2.nextElementSibling;
