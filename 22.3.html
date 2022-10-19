@@ -49,6 +49,7 @@
     const pressed = document.querySelector(".pressed");
     const pressedList = document.querySelector("p");
     const form = document.querySelector("form");
+    let guessed = false;
 
     const isLetter = (str) => /^[A-Z]+$/i.test(str);
 
@@ -57,14 +58,15 @@
     };
 
     document.body.addEventListener("keypress", (e) => {
+      if (guessed) return;
       let letter = e.key;
       if (isLetter(letter)) {
         if (!keyPressed.includes(letter)) {
           if (letter == "b") {
+            guessed = true;
             h4.innerText = "right letter!";
             h4.style.color = "green";
             letterBox.textContent = secretLetter;
-            e.stopImmediatePropagation();
             askForReplay(e);
           } else {
             h4.innerText = "nope, wrong letter!";
