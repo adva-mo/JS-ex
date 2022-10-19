@@ -28,32 +28,23 @@ information, and ask again for his confirmation. -->
     const nameInput = document.querySelector('input[name="name"]');
     const ageInput = document.querySelector('input[name="age"]');
     const emailInput = document.querySelector('input[name="email"]');
-    let infoList;
+
     const userInfo = {};
-
-    const alertInfo = () => {
-      infoList = document.createElement("ul");
-      for (const [key, value] of Object.entries(userInfo)) {
-        let line = `${key}: ${value} `;
-        let lineToAppend = document.createElement("li");
-        lineToAppend.innerText = line;
-        infoList.appendChild(lineToAppend);
-      }
-      window.alert(`is that info correct?
-      ${infoList}`);
-    };
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      console.log(userInfo);
-      alertInfo();
-    });
 
     for (let input of [nameInput, ageInput, emailInput]) {
       input.addEventListener("input", (e) => {
-        let key = e.target.name;
-        userInfo[key] = e.target.value;
+        userInfo[e.target.name] = e.target.value;
       });
     }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let confirmed = confirm(`
+      your name: ${userInfo.name}
+      your age: ${userInfo.age}
+      your email: ${userInfo.email},
+      confirm`);
+      this.disabled = true;
+    });
   </script>
 </html>
