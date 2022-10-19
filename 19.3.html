@@ -27,30 +27,55 @@
     <div>
       <form action="">
         <div class="digits-container">
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
+          <input name="first" id="first" type="text" />
+          <input name="second" id="second" type="text" />
+          <input name="third" id="third" type="text" />
+          <input name="forth" id="forth" type="text" />
+          <input name="fifth" id="fifth" type="text" />
+          <input name="sixth" id="sixth" type="text" />
         </div>
         <button>submit</button>
       </form>
     </div>
   </body>
   <script>
+    const form = document.querySelector("form");
     const inputs = document.querySelectorAll("input");
+
+    const onPaste = () => {
+      const paste =
+        (event.clipboardData || window.clipboardData).getData("text") + "";
+      const number = paste.split("");
+
+      inputs.forEach((input, i) => {
+        console.log(input, i);
+        if (number[i]) {
+          input.value = number[i];
+        }
+      });
+
+      if (lastInput.value.length >= 1) {
+        console.log("o");
+        form.submit();
+      }
+      event.preventDefault();
+    };
 
     inputs.forEach((input, i) => {
       var nextInput = inputs[i + 1];
-
+      var lastInput = inputs[inputs.length - 1];
       input.addEventListener("input", (e) => {
         if (e.target.value >= 1) {
           if (nextInput) {
             nextInput.focus();
           }
         }
+        if (lastInput.value.length >= 1) {
+          console.log("o");
+          form.submit();
+        }
       });
+      input.addEventListener("paste", onPaste);
     });
   </script>
 </html>
