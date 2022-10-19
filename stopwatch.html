@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stop watch</title>
+  </head>
+  <body>
+    <div class="watch">
+      <span id="minutes">00</span>:<span id="seconds">00</span>:<span
+        id="milsec"
+        >00</span
+      >
+    </div>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <button id="clear">clear</button>
+  </body>
+  <script>
+    const secondsBox = document.getElementById("seconds");
+    const milsecBox = document.getElementById("milsec");
+    const minutesBox = document.getElementById("minutes");
+    const buttons = document.querySelectorAll("button");
+    let minutes = 0;
+    let seconds = 0;
+    let milsec = 0;
+    var milsecCount, secCount, minCount;
+
+    const addSecond = () => {
+      seconds <= 59 ? (seconds += 1) : (seconds = 0);
+      secondsBox.textContent = seconds;
+    };
+    const addMinutes = () => {
+      minutes += 1;
+      minutesBox.textContent = minutes;
+    };
+    const addMilSecond = () => {
+      milsec <= 100 ? (milsec += 1) : (milsec = 0);
+      milsecBox.textContent = milsec;
+    };
+
+    buttons.forEach((b) =>
+      b.addEventListener("click", (e) => {
+        if (e.target.id == "start") {
+          milsecCount = setInterval(addMilSecond, 10);
+          secCount = setInterval(addSecond, 1000);
+          minCount = setInterval(addMinutes, 60000);
+        }
+        if (e.target.id == "stop") {
+          clearInterval(milsecCount);
+          clearInterval(secCount);
+          clearInterval(minCount);
+        }
+        if (e.target.id == "clear") {
+          window.location.reload();
+        }
+      })
+    );
+  </script>
+</html>
