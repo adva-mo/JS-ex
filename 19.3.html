@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>19.3</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      input {
+        width: 30px;
+        height: 30px;
+      }
+      /* button {
+        padding: auto;
+        margin: auto;
+      } */
+    </style>
+  </head>
+  <body>
+    <h2>text to copy: 123456</h2>
+    <div>
+      <form action="">
+        <div class="digits-container">
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+        </div>
+        <button>submit</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach((input, i) => {
+      var nextInput = inputs[i + 1];
+
+      input.addEventListener("input", (e) => {
+        if (e.target.value >= 1) {
+          if (nextInput) {
+            nextInput.focus();
+          }
+        }
+      });
+    });
+  </script>
+</html>
