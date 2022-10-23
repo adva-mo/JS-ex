@@ -36,37 +36,8 @@ const myFuncArrow = () => {
 // a. In your own words, what will this point to and why?
 // b. How can you fix this code?
 
-// document.querySelector(".element").addEventListener(() => {
-//   console.log(this);
-// });
-let E = document.querySelector(".element");
-E.addEventListener(any, function () {
+//answer : create an elemnt in html with class "element" and run the following code:
+
+document.querySelector(".element").addEventListener("click", function () {
   console.log(this);
 });
-
-document.querySelector(".element").addEventListener(
-  any,
-  (somefunc = (e) => {
-    console.log(this);
-  })
-);
-
-// somefunc();
-
-let ele = document.querySelector(".element");
-ele.addEventListener(any, this.somefunc);
-const somefunc = () => {
-  console.log(this);
-};
-// somefunc();
-
-// let elem = document.querySelector(".element");
-// elem = {
-//   addEventListener() {
-//     console.log(this);
-//   },
-// };
-// document.querySelector(".element").addEventListener();
-//     (e) => {
-//   console.log(this);
-// });
