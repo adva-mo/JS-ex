@@ -27,3 +27,17 @@ fakeRequest("/users")
     console.log(res.status);
     console.log("REQUEST FAILED");
   });
+
+/// example to extract data from first promise, then send it to another promise which will recieve data and send it to other promise
+fakeRequest("/users")
+  .then((res) => {
+    const id = res.data[0].id;
+    return fakeRequest(`/users/${id}`);
+  })
+  .then((res) => {
+    const postId = res.data.topPostId;
+    return fakeRequest(`/postdata/${postId}`);
+  })
+  .catch((err) => {
+    console.log("error");
+  });
