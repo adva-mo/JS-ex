@@ -18,12 +18,10 @@ function validateArr(arr) {
     }
   })
     .then(() => {
-      console.log("resolved");
       console.log(sortWords(makeAllCaps(arr)));
-      makeAllCaps(arr);
     })
     .catch(() => {
-      console.log("cathced");
+      console.log("ERROR: the array contains not only strings values");
     });
 }
 
@@ -37,4 +35,4 @@ function sortWords(arr) {
   return arr.sort();
 }
 
-console.log(validateArr(arr));
+validateArr(arr);
