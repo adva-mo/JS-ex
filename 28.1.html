@@ -16,18 +16,15 @@
     btn.addEventListener("click", getJoke);
     function getJoke() {
       fetch("https://api.jokes.one/jod")
-        .then(function (res) {
-          if (res.ok) {
-            // console.log("hi");
-            res.json().then((data) => {
-              const joke = data.contents.jokes[0].joke.text;
-              document.getElementById("joke").innerHTML = joke;
-            });
-          }
+        .then((res) => {
+          //   if (res.ok) {
+          res.json().then((data) => {
+            const joke = data.contents.jokes[0].joke.text;
+            document.getElementById("joke").innerHTML = joke;
+          });
+          //   }
         })
-        .catch(() => {
-          console.log("error");
-        });
+        .catch(() => console.log("error"));
     }
   </script>
 </html>
