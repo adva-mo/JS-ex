@@ -33,15 +33,16 @@ const getRecipe = (recipeID) => {
 //     console.log("It is an error!");
 //   });
 
-async function getid2() {
+const getid2 = async () => {
   try {
-    const reciepeID = await getIDs();
-    const reciepe = await getRecipe(reciepeID);
-    console.log(reciepe);
-  } catch {
-    console.log("error");
+    const id = await getIDs();
+    const recipe = await getRecipe(id);
+    console.log(recipe.split(":")[1]);
+  } catch (error) {
+    console.log(error);
   }
-}
+};
+
 getid2();
 
 //     Your task is to convert the consumed promise not to use .then

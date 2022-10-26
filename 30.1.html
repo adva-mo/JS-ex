@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git API</title>
+  </head>
+  <body>
+    <h1>type in the user you are looking for</h1>
+    <form action="#">
+      <input type="text" id="username" />
+      <button>search</button>
+    </form>
+  </body>
+
+  <script>
+    const form = document.querySelector("form");
+    const input = document.querySelector("input");
+
+    form.addEventListener("submit", onSubmit);
+
+    function onSubmit() {
+      const userInput = input.value;
+      getUserData(userInput);
+      form.reset();
+    }
+
+    async function getUserData(userInput) {
+      console.log(userInput);
+
+      try {
+        const octokit = new Octokit({
+          auth: `${userInput}`,
+        });
+        console.log(octokit);
+        // let data = await octokit.request(`GET /users/${username}`, {
+        //   username: `${username}`,
+        // });
+        // await octokit.request("GET /users/{username}", {
+        //   username: "USERNAME",
+        // });
+        // console.log(data);
+      } catch {
+        console.log("error2");
+      }
+    }
+
+    //     let firstReq = new XMLHttpRequest();
+    // firstReq.addEventListener("load", function () {
+    //   console.log("it worked");
+    //   const data = JSON.parse(this.responseText);
+    //   for (let val of data.films) {
+    //     console.log(val);
+    //   }
+    //   console.log(data);
+    // });
+    // firstReq.addEventListener("error", () => {
+    //   console.log("ERROR!!!");
+    // });
+    // firstReq.open("GET", "https://swapi.dev/api/planets/3/");
+    // firstReq.send();
+    // console.log("it worked FOR SURE");
+  </script>
+</html>
