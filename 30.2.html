@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>type in the movie you are looking for!</h1>
+    <form action="#">
+      <input type="text" id="username" />
+      <button>search</button>
+      <div id="result-box"></div>
+    </form>
+    <script>
+      const form = document.querySelector("form");
+      const input = document.querySelector("input");
+      const resultBox = document.querySelector("#result-box");
+      const myOmbdKey = "b5ebe69";
+
+      form.addEventListener("submit", onSubmit);
+
+      function onSubmit() {
+        resultBox.innerHTML = "";
+        const userInput = input.value;
+        getUserData(userInput);
+        form.reset();
+      }
+
+      async function getUserData(userInput) {
+        try {
+          let res = await fetch(
+            `http://www.omdbapi.com/?t=${userInput}&apikey=${myOmbdKey}`
+          );
+          if (!res.ok) {
+            return;
+          }
+          var data = await res.json();
+          const movieTitle = data.Title;
+          const movieGenre = data.Genre;
+          const movieyear = data.Year;
+          const moviePlot = data.Plot;
+          const movieDirector = data.Director;
+          const movieActors = data.Actors;
+          const ratings = data.Ratings;
+          const result = await Promise.all([
+            {
+              "movie Title": movieTitle,
+              "movie Genre": movieGenre,
+              "movie year": movieyear,
+              "movie Plot": moviePlot,
+              "movie Director": movieDirector,
+              "movie Actors": movieActors,
+              ratings: data.Ratings,
+            },
+          ]);
+          await display(result);
+        } catch {
+          console.log(`error fetching`);
+        }
+      }
+
+      function display(result) {
+        let movieObj = result[0]; //object
+        const rating = movieObj.ratings; // an array of 3 objects
+        delete movieObj.ratings;
+        for (const property in movieObj) {
+          const p = document.createElement("p");
+          p.innerText += `${property}: ${movieObj[property]}`;
+          resultBox.append(p);
+        }
+        appendRatings(rating);
+      }
+
+      function appendRatings(ratings) {
+        if (ratings.length > 0) {
+          for (let source of ratings) {
+            const p = document.createElement("p");
+            p.innerText += `${source.Source} Rating: ${source.Value}`;
+            resultBox.append(p);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
