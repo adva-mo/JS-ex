@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>28.1</title>
+  </head>
+  <body>
+    <button>Joke of the day</button>
+    <div id="joke"></div>
+  </body>
+  <script>
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", getJoke2);
+
+    // function getJoke() {
+    //   fetch("https://api.jokes.one/jod")
+    //     .then((res) => {
+    //       //   if (res.ok) {
+    //       res.json().then((data) => {
+    //         const joke = data.contents.jokes[0].joke.text;
+    //         document.getElementById("joke").innerHTML = joke;
+    //       });
+    //       //   }
+    //     })
+    //     .catch(() => console.log("error"));
+    // }
+
+    async function getJoke2() {
+      try {
+        let res = await fetch("https://api.jokes.one/jod");
+        if (!res.ok) {
+          return;
+        }
+        const data = await res.json();
+        const joke = data.contents.jokes[0].joke.text;
+        document.getElementById("joke").innerHTML = joke;
+      } catch {
+        console.log("error");
+      }
+    }
+  </script>
+</html>
