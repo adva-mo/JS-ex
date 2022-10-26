@@ -27,39 +27,31 @@
     }
 
     async function getUserData(userInput) {
-      console.log(userInput);
-
       try {
-        const octokit = new Octokit({
-          auth: `${userInput}`,
-        });
-        console.log(octokit);
-        // let data = await octokit.request(`GET /users/${username}`, {
-        //   username: `${username}`,
-        // });
-        // await octokit.request("GET /users/{username}", {
-        //   username: "USERNAME",
-        // });
-        // console.log(data);
+        let res = await fetch(`https://api.github.com/users/${userInput}`);
+        if (!res.ok) {
+          return;
+        }
+        let data = await res.json();
+        displayUsers(data);
       } catch {
-        console.log("error2");
+        console.log(`${userInput} is not exist on the system!`);
       }
     }
 
-    //     let firstReq = new XMLHttpRequest();
-    // firstReq.addEventListener("load", function () {
-    //   console.log("it worked");
-    //   const data = JSON.parse(this.responseText);
-    //   for (let val of data.films) {
-    //     console.log(val);
-    //   }
-    //   console.log(data);
-    // });
-    // firstReq.addEventListener("error", () => {
-    //   console.log("ERROR!!!");
-    // });
-    // firstReq.open("GET", "https://swapi.dev/api/planets/3/");
-    // firstReq.send();
-    // console.log("it worked FOR SURE");
+    function displayUsers(data) {
+      const username = data.login;
+      const userImgSrc = data.avatar_url;
+      const publicRep = `${username} has ${data.public_repos} public repos!`;
+      document.body.append(publicRep);
+      createAbdDisplayIMG(userImgSrc);
+    }
+
+    function createAbdDisplayIMG(src) {
+      const IMG = document.createElement("img");
+      IMG.src = `${src}`;
+      IMG.style.height = "100px";
+      document.body.append(IMG);
+    }
   </script>
 </html>
