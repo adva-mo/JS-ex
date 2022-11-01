@@ -765,7 +765,7 @@ const deleteCarFromAgency = (agencyObject, carNumber) => {
   return deletedCar;
 };
 
-console.log(deleteCarFromAgency(ourCarMarket.sellers[0], "6t7QU"));
+// console.log(deleteCarFromAgency(ourCarMarket.sellers[0], "6t7QU"));
 // deleteCarFromAgency(ourCarMarket.sellers[0], "6t7QU");
 // console.log(agencyObject,'');
 
@@ -797,21 +797,42 @@ const decOrIncCreditOfAgency = (agencyObj, amount) => {
 //? @param {object} - carObject
 //? @return {object[]} - allCarsOfCostumer
 
-const setCarToCustomer = (customerObj, carObject) => {};
+const setCarToCustomer = (customerObj, carObject) => {
+  customerObj.cars.push(carObject);
+  return customerObj.cars;
+};
+// console.log(setCarToCustomer(ourCarMarket.customers[0], { name: "new car" }));
 
 //* 18. deleteCarOfCostumer
 //? @param {object} - customerObj
 //? @param {string} - carNumber
 //? @return {object[]} - allCarsOfCostumer
-const deleteCarOfCostumer = (costumerObj, carNumber) => {};
+
+const deleteCarOfCostumer = (costumerObj, carNumber) => {
+  costumerObj.cars.find((car, i) => {
+    car.carNumber === carNumber;
+    costumerObj.cars.splice(i, 1);
+  });
+  return costumerObj.cars;
+};
+// console.log(deleteCarOfCostumer(ourCarMarket.customers[0], "16da1"));
 
 //* 19. decOrIncCashOfCustomer
 //? @param {object}  - customerObj
 //? @param {number}  - amount - negative or positive amount
 //? @return {number} - costumerCash
 //?                    The lowest cash amount is 0
-const decOrIncCashOfCustomer = (costumerObj, amount) => {};
+const decOrIncCashOfCustomer = (costumerObj, amount) => {
+  if (costumerObj.cash + amount > 0) {
+    return costumerObj.cash + amount;
+  } else {
+    console.log("not enough in cash");
+  }
+};
+// console.log(decOrIncCashOfCustomer(ourCarMarket.customers[2], -20000));
+
 //! ---------------- Hard ----------------------
+
 //* 20. setPropertyBrandToAllCars
 //? Set to all car objects the new key "model" and assign to it the correct model name
 //? @param {object} carMarket
